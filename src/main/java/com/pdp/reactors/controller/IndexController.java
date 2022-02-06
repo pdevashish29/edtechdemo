@@ -15,4 +15,9 @@ public class IndexController {
     public String getAppDeployedVersion(){
         return  environment.getProperty("spring.application.version");
     }
+
+    @GetMapping("app-name")
+    public String getAppName(){
+        return  environment.getProperty("spring.application.name");
+    }
 }
