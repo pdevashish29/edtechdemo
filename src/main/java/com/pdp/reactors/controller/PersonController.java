@@ -38,4 +38,11 @@ public class PersonController {
     }
 
 
+
+    //added by devashish 6th feb 2022
+    @GetMapping("/generate-excel-2")
+    public void generateExcelSheet2() {
+        personService.geenrateExcel();
+    }
+
 }
