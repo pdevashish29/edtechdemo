@@ -1,2 +1,2 @@
-runtime: java11
-env: flex
+runtime: java11  # Java runtime
+instance_class: F4_1G
