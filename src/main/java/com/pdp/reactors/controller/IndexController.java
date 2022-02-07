@@ -11,6 +11,11 @@ public class IndexController {
     @Autowired
     Environment environment;
 
+    @GetMapping("/")
+    public String hello(){
+        return  "app is working";
+    }
+
     @GetMapping("version")
     public String getAppDeployedVersion(){
         return  environment.getProperty("spring.application.version");
