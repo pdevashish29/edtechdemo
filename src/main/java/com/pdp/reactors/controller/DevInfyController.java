@@ -11,4 +11,10 @@ public class DevInfyController {
         return  "Wah kya baat h";
     }
 
+    @GetMapping("/dev-infy-01")
+    public String sayHelloApi2(){
+        return  "Wah kya baat h";
+    }
+
+
 }
