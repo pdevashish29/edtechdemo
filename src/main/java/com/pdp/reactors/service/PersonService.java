@@ -45,46 +45,5 @@ public class PersonService {
     }
 
 
-    public void geenrateExcel() {
 
-        try {
-            Workbook workbook = new XSSFWorkbook();
-            Sheet sheet1 = workbook.createSheet("report");
-
-            Row header = sheet1.createRow(0);
-            Cell headerCell =  header.createCell(0);
-            headerCell.setCellValue("Name");
-           // headerCell.setCellStyle(null);
-
-            headerCell= header.createCell(1);
-            headerCell.setCellValue("Address");
-            //headerCell.setCellStyle(null);
-
-
-            CellStyle style = workbook.createCellStyle();
-            style.setWrapText(true);
-
-           for(int i=1; i<=10;i++){
-
-               Row row = sheet1.createRow(++i);
-               Cell cell = row.createCell(0);
-               cell.setCellValue(new Random(1000)+"");
-               cell.setCellStyle(style);
-
-               cell = row.createCell(1);
-               cell.setCellValue(new Random(1000)+"");
-               cell.setCellStyle(style);
-           }
-
-            FileOutputStream outputStream = new FileOutputStream("tem.xlx");
-            workbook.write(outputStream);
-            workbook.close();
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
-    }
 }

@@ -32,17 +32,6 @@ public class PersonController {
         return personService.savePerson(person);
     }
 
-    @GetMapping("/generate-excel")
-    public void generateExcelSheet() {
-        personService.geenrateExcel();
-    }
 
-
-
-    //added by devashish 6th feb 2022
-    @GetMapping("/generate-excel-2")
-    public void generateExcelSheet2() {
-        personService.geenrateExcel();
-    }
 
 }

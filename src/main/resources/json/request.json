@@ -1,0 +1,37 @@
+{
+  "lefkey1": "leftvalue",
+  "name": "Parashar",
+  "email": "devdewance@gmail.com",
+  "address": [
+    {
+      "city": "darauli",
+      "zip": 841234
+    },
+    {
+      "city": "siwan",
+      "zip": 841234
+    }
+
+  ],
+  "contacts": {
+    "home": {
+      "phone": 9797979,
+      "info": {
+        "text": "foo bar",
+        "details": {
+          "text": "kaka"
+        }
+      }
+    },
+    "office": {
+      "phone": 9797979,
+      "info": {
+        "text": "foo bar",
+        "details": {
+          "text": "kaka"
+        }
+      }
+    }
+  }
+
+}

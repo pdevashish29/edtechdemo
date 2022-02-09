@@ -13,16 +13,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String hello(){
-        return  "app is working";
+        return  "app is working" +environment.getProperty("spring.application.version")+"with version "+ environment.getProperty("spring.application.version");
     }
 
-    @GetMapping("version")
-    public String getAppDeployedVersion(){
-        return  environment.getProperty("spring.application.version");
-    }
-
-    @GetMapping("app-name")
-    public String getAppName(){
-        return  environment.getProperty("spring.application.name");
-    }
 }
