@@ -59,6 +59,13 @@
 			<version>1.0.2</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>31.0.1-jre</version>
+		</dependency>
+
 
 	</dependencies>
 
@@ -76,6 +83,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>appengine-maven-plugin</artifactId>
@@ -83,6 +91,16 @@
 				<configuration>
 					<version>1</version>
 					<projectId>GCLOUD_CONFIG</projectId>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.microsoft.azure</groupId>
+				<artifactId>azure-webapp-maven-plugin</artifactId>
+				<version>2.3.0</version>
+				<configuration>
+					<appName>imperialdemo</appName>
+					<resourceGroup>imperialdemo_group</resourceGroup>
 				</configuration>
 			</plugin>
 
