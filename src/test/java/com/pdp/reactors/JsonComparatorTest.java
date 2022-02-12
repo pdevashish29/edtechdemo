@@ -14,6 +14,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
+import javax.json.*;
+import javax.json.stream.JsonGenerator;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -29,7 +34,33 @@ public class JsonComparatorTest {
 
 
     @Test
-    public void compareJsonTest() throws  Exception{
+    public void compareJsonTest2() throws  Exception{
+
+/*
+        JsonPatch diff = Json.createDiff();
+        JsonStructure source = JsonStructure.
+//        JsonObject patched = diff.apply(source);
+        JsonMergePatch mergeDiff = Json.createMergeDiff(source, target);
+        JsonValue patched = mergeDiff.apply(source);
+        System.out.println(format(diff.toJsonArray()));
+        System.out.println(format(mergeDiff.toJsonValue()));*/
+    }
+
+    private static String format(JsonValue json) {
+        StringWriter stringWriter = new StringWriter();
+        prettyPrint(json, stringWriter);
+        return stringWriter.toString();
+    }
+
+    public static void prettyPrint(JsonValue json, Writer writer) {
+        Map<String, Object> config =   Collections.singletonMap(JsonGenerator.PRETTY_PRINTING, true);
+        JsonWriterFactory writerFactory = Json.createWriterFactory(config);
+        try (JsonWriter jsonWriter = writerFactory.createWriter(writer)) {
+            jsonWriter.write(json);
+        }
+    }
+    @Test
+    public void compareJsonTest1() throws  Exception{
 
         Resource resource1 = resourceLoader.getResource(jsonPath1);
         Resource resource2 = resourceLoader.getResource(jsonPath2);
@@ -49,16 +80,13 @@ public class JsonComparatorTest {
         MapDifference<String, Object> difference = Maps.difference(leftFlatMap, rightFlatMap);
 
         System.out.println("Entries only on the left\n--------------------------");
-        difference.entriesOnlyOnLeft()
-                .forEach((key, value) -> System.out.println(key + ": " + value));
+        difference.entriesOnlyOnLeft() .forEach((key, value) -> System.out.println(key + ": " + value));
 
         System.out.println("\n\nEntries only on the right\n--------------------------");
-        difference.entriesOnlyOnRight()
-                .forEach((key, value) -> System.out.println(key + ": " + value));
+        difference.entriesOnlyOnRight().forEach((key, value) -> System.out.println(key + ": " + value));
 
         System.out.println("\n\nEntries differing\n--------------------------");
-        difference.entriesDiffering()
-                .forEach((key, value) -> System.out.println(key + ": " + value));
+        difference.entriesDiffering().forEach((key, value) -> System.out.println(key + ": " + value));
     }
 
     public static void printAll(JsonNode node) {

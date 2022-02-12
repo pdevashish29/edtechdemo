@@ -13,7 +13,8 @@ public class IndexController {
 
     @GetMapping("/")
     public String hello(){
-        return  "app is working" +environment.getProperty("spring.application.version")+"with version "+ environment.getProperty("spring.application.version");
+        return  "app is working";
     }
+
 
 }
