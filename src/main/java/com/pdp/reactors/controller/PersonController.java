@@ -17,6 +17,7 @@ public class PersonController {
 
     @GetMapping("hello")
     public String getHello(){
+        System.out.println("Welcome");
         return  new Date().toLocaleString() ;
     }
 
