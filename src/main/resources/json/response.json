@@ -1,15 +1,21 @@
 {
 
-  "rightkey1": "rightvalue1",
+
   "name": "devashish",
   "email": "devdewance@gmail.com",
   "address": [
     {
-      "city": "darauli",
+      "city": {
+        "text": "Pune",
+        "type": {
+          "home": 0,
+          "games": ["cricket","hockey"]
+        }
+      },
       "zip": 841234
     },
     {
-      "city": "siwan",
+      "city": "delhi2",
       "zip": 841234
     }
   ],

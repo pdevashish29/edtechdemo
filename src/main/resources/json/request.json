@@ -4,13 +4,20 @@
   "email": "devdewance@gmail.com",
   "address": [
     {
-      "city": "darauli",
-      "zip": 841234
+      "zip": 841234,
+      "city": {
+        "text": "mumbai",
+         "type": {
+           "home": 240.0,
+           "games": ["cricket","footbal"]
+         }
+      }
     },
     {
-      "city": "siwan",
+      "city": "delhi2",
       "zip": 841234
     }
+
 
   ],
   "contacts": {
