@@ -3,6 +3,7 @@ package com.pdp.reactors.controller;
 import com.pdp.reactors.model.Person;
 import com.pdp.reactors.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -37,5 +38,9 @@ public class PersonController {
     }
 
 
+    @PostMapping("/persons")
+    public ResponseEntity savePersons(){
+        return  personService.savePersons();
+    }
 
 }
