@@ -51,6 +51,7 @@ public class MainTest {
                     String subApiName=requestFileName.substring(requestFileName.indexOf("_")+1,requestFileName.lastIndexOf("_"));
                     System.out.println(mainApiName+" "+subApiName);
                  //   System.out.println(requestFileName);
+                    throw  new RuntimeException("WELCOME");
                 }
             }else
                 System.out.println("directory not found");
