@@ -50,7 +50,7 @@ public class MainTest {
                     String mainApiName=requestFileName.substring(0,requestFileName.indexOf("_"));
                     String subApiName=requestFileName.substring(requestFileName.indexOf("_")+1,requestFileName.lastIndexOf("_"));
                     System.out.println(mainApiName+" "+subApiName);
-                 //   System.out.println(requestFileName);
+                    System.out.println(requestFileName);
                     throw  new RuntimeException("WELCOME");
                 }
             }else
