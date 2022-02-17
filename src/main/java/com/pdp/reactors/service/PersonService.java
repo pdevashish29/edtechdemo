@@ -1,9 +1,11 @@
 package com.pdp.reactors.service;
 
 
+import com.pdp.reactors.controller.repo.PersonRepo;
 import com.pdp.reactors.model.Person;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileOutputStream;
@@ -18,30 +20,19 @@ import java.util.stream.Collectors;
 @Service
 public class PersonService {
 
-  List<Person> persons = new ArrayList<>();
-    {
-        persons.add(new Person("101","Parashar","delhi", 25));
-        persons.add(new Person("102","Devashish","delhi", 25));
-    }
-
-
+    @Autowired
+    private PersonRepo personRepo;
 
     public List<Person> findAllPersons(){
-        return  this.persons;
+        return personRepo.findAll();
     }
 
-    public Person findPersonById(String id){
-
-        return this.persons.stream()
-                .filter(item -> item.getId().equalsIgnoreCase(id)).collect(Collectors.toList())
-                .get(0);
-
+    public Person findPersonById(Integer id){
+        return personRepo.findById(id).orElse(null);
     }
 
     public Person savePerson(Person person){
-         person.setId(new Random(100).nextInt()+"");
-          this.persons.add(person);
-          return person;
+        return  personRepo.save(person);
     }
 
 

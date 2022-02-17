@@ -33,7 +33,7 @@ public class JsonComparatorTest {
     ResourceLoader resourceLoader;
 
 
-    @Test
+   // @Test
     public void compareJsonTest2() throws  Exception{
 
 /*

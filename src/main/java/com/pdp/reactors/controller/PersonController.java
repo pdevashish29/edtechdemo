@@ -17,12 +17,8 @@ public class PersonController {
 
     @GetMapping("hello")
     public String getHello(){
-        System.out.println("Welcome");
-        System.out.println("Welcome");
-        System.out.println("Welcome");
-        return  new Date().toLocaleString() ;
+        return  "Hello";
     }
-
 
 
     @GetMapping
@@ -31,11 +27,11 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public Person getPersonById(@PathVariable  String id) {
+    public Person getPersonById(@PathVariable  Integer id) {
         return personService.findPersonById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public Person savePerson(@RequestBody Person person){
         return personService.savePerson(person);
     }
