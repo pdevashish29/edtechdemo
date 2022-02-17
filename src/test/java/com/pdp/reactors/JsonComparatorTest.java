@@ -33,7 +33,7 @@ public class JsonComparatorTest {
     ResourceLoader resourceLoader;
 
 
-    @Test
+   // @Test
     public void compareJsonTest2() throws  Exception{
 
 /*
@@ -59,7 +59,7 @@ public class JsonComparatorTest {
             jsonWriter.write(json);
         }
     }
-    @Test
+    //@Test
     public void compareJsonTest1() throws  Exception{
 
         Resource resource1 = resourceLoader.getResource(jsonPath1);

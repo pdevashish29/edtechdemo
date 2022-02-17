@@ -3,6 +3,7 @@ package com.pdp.reactors.controller;
 import com.pdp.reactors.model.Person;
 import com.pdp.reactors.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -17,12 +18,8 @@ public class PersonController {
 
     @GetMapping("hello")
     public String getHello(){
-        System.out.println("Welcome");
-        System.out.println("Welcome");
-        System.out.println("Welcome");
-        return  new Date().toLocaleString() ;
+        return  "Hello";
     }
-
 
 
     @GetMapping
@@ -31,15 +28,19 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public Person getPersonById(@PathVariable  String id) {
+    public Person getPersonById(@PathVariable  Integer id) {
         return personService.findPersonById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public Person savePerson(@RequestBody Person person){
         return personService.savePerson(person);
     }
 
 
+    @PostMapping("/persons")
+    public ResponseEntity savePersons(){
+        return  personService.savePersons();
+    }
 
 }

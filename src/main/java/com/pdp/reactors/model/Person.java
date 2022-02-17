@@ -1,22 +1,27 @@
 package com.pdp.reactors.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Entity
+@Table
+@Builder
 public class Person {
 
-
-    private String id;
+    @Id
+    @GeneratedValue
+    private Integer id;
     private String name;
     private String address;
     private  Integer age;
