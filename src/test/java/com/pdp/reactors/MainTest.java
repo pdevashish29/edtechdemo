@@ -73,6 +73,7 @@ public class MainTest {
 
     @Test
    public void sendExcelInMail() throws  MessagingException {
+        System.out.println();
         log.info("mail sending with attachment");
         MimeMessage msg = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
