@@ -21,6 +21,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -42,7 +43,7 @@ public class MainTest {
     public void readFilesTest(){
         try {
             File directory = new ClassPathResource("/json").getFile();
-            if(directory.exists()){
+            if(directory.exists() && directory.listFiles()!=null){
                 System.out.println(directory.listFiles().length);
                 for (File file:directory.listFiles()){
 
@@ -51,7 +52,6 @@ public class MainTest {
                     String subApiName=requestFileName.substring(requestFileName.indexOf("_")+1,requestFileName.lastIndexOf("_"));
                     System.out.println(mainApiName+" "+subApiName);
                     System.out.println(requestFileName);
-                    throw  new RuntimeException("WELCOME");
                 }
             }else
                 System.out.println("directory not found");
@@ -72,7 +72,8 @@ public class MainTest {
     }
 
     @Test
-   public void sendExcelInMail() throws MessagingException, IOException, MessagingException {
+   public void sendExcelInMail() throws  MessagingException {
+        System.out.println();
         log.info("mail sending with attachment");
         MimeMessage msg = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
@@ -87,32 +88,28 @@ public class MainTest {
 
     @Test
     public void checkPerfomance() {
-
         personRepo.deleteAll();
-        int size = 10;
-        List<Person> personsList1 = getFakePersonList(size);
+        int size = 1000;
+        List<Person> personList1 = getFakePersonList(size);
         List<Person> personList2 = getFakePersonList(size);
-
-
         Long t1 = System.currentTimeMillis();
-
-        for (Person p : personsList1) {
-            Person save = personRepo.save(p);
-        }
-
+        for (Person p : personList1) { Person save = personRepo.save(p); }
         Long t2 = System.currentTimeMillis();
-
         personList2.stream().parallel().forEach(personRepo::save);
-
         Long t3 = System.currentTimeMillis();
-
         System.out.println("Classic Time of execution " + (t2 - t1));
-
         System.out.println("Parallel Stream Time of execution " + (t3 - t2));
-
         int noOfRecords = (int) personRepo.count();
+        List<Integer> personList1Ids= personList1.stream().map(getPersonIntegerFunction()).collect(Collectors.toList());
+        List<Integer> personList2Ids= personList2.stream().map(getPersonIntegerFunction()).collect(Collectors.toList());
+        System.out.println(personList1Ids);
+        System.out.println(personList2Ids);
         Assertions.assertEquals(noOfRecords, (size * 2));
+    }
 
+
+    private Function<Person, Integer> getPersonIntegerFunction() {
+        return i -> i.getId();
     }
 
 
