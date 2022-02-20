@@ -39,6 +39,8 @@ public class MainTest {
     @Autowired
     ResourceLoader resourceLoader;
 
+    Faker faker = new Faker();
+
     @Test
     public void readFilesTest(){
         try {
@@ -114,16 +116,15 @@ public class MainTest {
 
 
     private List<Person> getFakePersonList(Integer size) {
-        Faker faker = new Faker();
-        return IntStream.range(0, size)
-                .mapToObj(i -> {
-                    Person person = new Person();
-                    person.setName(faker.name().fullName());
-                    person.setAddress(faker.address().fullAddress());
-                    person.setAge(faker.number().randomDigitNotZero());
-                    return person;
-                })
-                .collect(Collectors.toList());
+        return IntStream.range(0, size).mapToObj(new MainTest()::getPerson) .collect(Collectors.toList());
+    }
+
+    private  Person getPerson(int i ){
+        Person person = new Person();
+        person.setName(faker.name().fullName());
+        person.setAddress(faker.address().fullAddress());
+        person.setAge(faker.number().randomDigitNotZero());
+        return person;
     }
 
 
