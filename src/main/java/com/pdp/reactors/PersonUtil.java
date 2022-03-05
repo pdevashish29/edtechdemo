@@ -18,5 +18,6 @@ public class PersonUtil {
          Faker faker = new Faker();
           return IntStream.range(0, size)
                   .mapToObj(i ->  new Person(null,faker.name().fullName(),faker.address().fullAddress(),faker.number().randomDigitNotZero())).collect(Collectors.toList());
-}
+    }
+
 }

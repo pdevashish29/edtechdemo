@@ -1,9 +1,8 @@
 package com.pdp.reactors;
 
 import com.github.javafaker.Faker;
-import com.pdp.reactors.controller.repo.PersonRepo;
+import com.pdp.reactors.repo.PersonRepo;
 import com.pdp.reactors.model.Person;
-import com.pdp.reactors.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -31,14 +29,10 @@ public class MainTest {
 
     @Autowired
     private PersonRepo personRepo;
-
-
     @Autowired
     private JavaMailSender javaMailSender;
-
     @Autowired
     ResourceLoader resourceLoader;
-
     Faker faker = new Faker();
 
     @Test
@@ -48,7 +42,6 @@ public class MainTest {
             if(directory.exists() && directory.listFiles()!=null){
                 System.out.println(directory.listFiles().length);
                 for (File file:directory.listFiles()){
-
                     String requestFileName =file.getName();
                     String mainApiName=requestFileName.substring(0,requestFileName.indexOf("_"));
                     String subApiName=requestFileName.substring(requestFileName.indexOf("_")+1,requestFileName.lastIndexOf("_"));

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
 @Data
@@ -17,6 +18,7 @@ import java.util.Date;
 @Entity
 @Table
 @Builder
+@XmlRootElement
 public class Person {
 
     @Id

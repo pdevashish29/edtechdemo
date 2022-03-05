@@ -1,8 +1,10 @@
 package com.pdp.reactors.controller;
 
 import com.pdp.reactors.model.Person;
+import com.pdp.reactors.model.PersonList;
 import com.pdp.reactors.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +24,11 @@ public class PersonController {
     }
 
 
-    @GetMapping
-    public List<Person> getPersons(){
-        return personService.findAllPersons();
+    @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_VALUE})
+    public PersonList getPersons(){
+        PersonList personList = new PersonList();
+        personList.setPerson(personService.findAllPersons());
+        return personList;
     }
 
     @GetMapping("/{id}")
