@@ -2,6 +2,7 @@ package com.pdp.reactors.service;
 
 
 import com.pdp.reactors.PersonUtil;
+import com.pdp.reactors.model.PersonList;
 import com.pdp.reactors.repo.PersonRepo;
 import com.pdp.reactors.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,11 @@ public class PersonService {
     private PersonUtil personUtil;
 
 
-    public List<Person> findAllPersons(){
-        return personRepo.findAll();
+    public PersonList findAllPersons(){
+        System.out.println("####  PersonService findAllPersons");
+        PersonList personList = new PersonList();
+        personList.setPersons(personRepo.findAll());
+        return personList;
     }
 
     public Person findPersonById(Integer id){

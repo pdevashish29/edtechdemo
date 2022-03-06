@@ -26,9 +26,8 @@ public class PersonController {
 
     @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_VALUE})
     public PersonList getPersons(){
-        PersonList personList = new PersonList();
-        personList.setPerson(personService.findAllPersons());
-        return personList;
+        System.out.println("####  PersonController getPerson");
+        return personService.findAllPersons();
     }
 
     @GetMapping("/{id}")

@@ -9,6 +9,6 @@ import java.util.List;
 @Data
 public class PersonList {
 
-    private List<Person> person;
+    private List<Person> persons;
 
 }

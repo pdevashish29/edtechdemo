@@ -84,21 +84,26 @@ public class MainTest {
     @Test
     public void checkPerfomance() {
         personRepo.deleteAll();
-        int size = 1000;
+        int size = 50000;
         List<Person> personList1 = getFakePersonList(size);
         List<Person> personList2 = getFakePersonList(size);
         Long t1 = System.currentTimeMillis();
         for (Person p : personList1) { Person save = personRepo.save(p); }
         Long t2 = System.currentTimeMillis();
+        // FORK AND JOIN
+        // THREADPOOL --
+        // MAIN THREAD WILL WAIT FOR RESULT COLLECTION
+        //
+
         personList2.stream().parallel().forEach(personRepo::save);
         Long t3 = System.currentTimeMillis();
         System.out.println("Classic Time of execution " + (t2 - t1));
         System.out.println("Parallel Stream Time of execution " + (t3 - t2));
         int noOfRecords = (int) personRepo.count();
-        List<Integer> personList1Ids= personList1.stream().map(getPersonIntegerFunction()).collect(Collectors.toList());
-        List<Integer> personList2Ids= personList2.stream().map(getPersonIntegerFunction()).collect(Collectors.toList());
-        System.out.println(personList1Ids);
-        System.out.println(personList2Ids);
+       // List<Integer> personList1Ids= personList1.stream().map(getPersonIntegerFunction()).collect(Collectors.toList());
+        //List<Integer> personList2Ids= personList2.stream().map(getPersonIntegerFunction()).collect(Collectors.toList());
+       // System.out.println(personList1Ids);
+        //System.out.println(personList2Ids);
         Assertions.assertEquals(noOfRecords, (size * 2));
     }
 
