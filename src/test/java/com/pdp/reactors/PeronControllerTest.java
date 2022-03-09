@@ -21,6 +21,7 @@ public class PeronControllerTest {
 
     @Test
     void contextLoads() {
+        System.out.println("ok");
           PersonList list= testRestTemplate.getForObject("http://localhost:"+port+"/v1/persons", PersonList.class);
           System.out.println(list.getPersons().size());
           Assertions.assertNotNull(testRestTemplate);
