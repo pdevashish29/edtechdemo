@@ -38,14 +38,13 @@ public class PersonControllerTest3 {
         person.setAddress("Delhi");
         list.setPersons(Arrays.asList(person));
         Mockito.when(service.findAllPersons()).thenReturn(list);
-        mockMvc
-                .perform(get("/v1/persons")
+        mockMvc.perform(get("/v1/persons")
                         .accept(MediaType.APPLICATION_JSON))
-                //.header("ACCEPT","application/json"))
-               .andExpect(MockMvcResultMatchers.jsonPath("$.persons").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.persons[*].id").isNotEmpty())
-                .andDo(print())
-        .andExpect(status().isOk());
+                         //.header("ACCEPT","application/json"))
+                        .andExpect(MockMvcResultMatchers.jsonPath("$.persons").exists())
+                        .andExpect(MockMvcResultMatchers.jsonPath("$.persons[*].id").isNotEmpty())
+                        .andDo(print())
+                        .andExpect(status().isOk());
 
     }
 }
